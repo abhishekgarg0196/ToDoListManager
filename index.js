@@ -1,13 +1,18 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
+const db = require('./config/mongoose');
 // By default websites run on port 80
 const port = 8000;
 
+app.set('view engine', 'ejs');
+app.set('views' ,path.join(__dirname, 'views'));
+app.use(express.urlencoded);
+app.use(express.static('assets'));
+
 // USE EXPRESS ROUTER
 app.use("/", require("./routes"));
-app.set('view engine', 'ejs');
-app.set('view','./views');
 
 app.listen(port, function(err){
     if(err){

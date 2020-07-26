@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>TODO App</title>
+    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'
+    rel='stylesheet'>   
+    <link rel="stylesheet"  type="text/css" href="css/home.css">
+</head>
+
+<body>
+        <h1>TODO App</h1>
+   
+    <div id="form">
+        <form id="todoform" action="/addTask" method="POST" >
+            <label for="descrption">Descrption</label>
+            <input id="descrption" type="text" name="descrption" required placeholder="What do you want to do?">
+            <label for="datepicker">Due Date</label>
+            <input type="text" id="datepicker" class="datepicker">
+            <button type="submit">Add Task</button>
+        </form>
+        
+        <div class="delete-task">
+            <a href="/delete-task/?id=<%= i._id %>">
+                <button type="submit">Delete Task<button>
+            </a>
+        </div>
+    </div>
+    
+    <div>
+    <label for="category">Category</label>
+    <select id="category" name="category" form="todoform">
+        <option value="none" selected disabled hidden> 
+            Choose a category 
+        </option> 
+      <option value="personal">personal</option>
+      <option value="work">work</option>
+      <option value="school">school</option>
+      <option value="cleaning">cleaning</option>
+    </select>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" > </script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script>
+
+<link rel="stylesheet" type="text/javascript" href="js/home.js">
+    
+</body>
+</html>
