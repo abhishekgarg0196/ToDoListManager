@@ -5,11 +5,13 @@ const toDoItemSchema = new mongoose.Schema({
         type: String,
         required : true
     },
-    category:{
-        type:String
+    date:{
+        type: String,
+        required : true
     },
-    duedate:{
-        type:String
+    category:{
+        type: String,
+        required : true
     }
 });
 

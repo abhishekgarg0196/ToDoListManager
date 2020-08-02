@@ -1,47 +1,92 @@
+<!DOCTYPE html>
 <html>
-
 <head>
-    <title>TODO App</title>
-    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'
-    rel='stylesheet'>   
+    <title>
+        <%= tittle %>
+     </title>
+    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">  
     <link rel="stylesheet"  type="text/css" href="css/home.css">
+    <meta name="viewport"content="width"=device-width,initial-scale=1,minimum scale=1">
 </head>
 
 <body>
-        <h1>TODO App</h1>
-   
-    <div id="form">
-        <form id="todoform" action="/addTask" method="POST" >
-            <label for="descrption">Descrption</label>
-            <input id="descrption" type="text" name="descrption" required placeholder="What do you want to do?">
-            <label for="datepicker">Due Date</label>
-            <input type="text" id="datepicker" class="datepicker">
-            <button type="submit">Add Task</button>
-        </form>
-        
-        <div class="delete-task">
-            <a href="/delete-task/?id=<%= i._id %>">
-                <button type="submit">Delete Task<button>
-            </a>
-        </div>
-    </div>
-    
-    <div>
-    <label for="category">Category</label>
-    <select id="category" name="category" form="todoform">
-        <option value="none" selected disabled hidden> 
-            Choose a category 
-        </option> 
-      <option value="personal">personal</option>
-      <option value="work">work</option>
-      <option value="school">school</option>
-      <option value="cleaning">cleaning</option>
-    </select>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" > </script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script>
+    <div id="main-div">
+     <!-- form to create the task -->
+         <form action="/create-task" method="POST">
+            <!-- the heading section -->
+             <h2 class="heading">TODO APP</h2>
+              <!-- the description section -->
+                    <div class="description">
+                        <div class="desc-content">
+                            <span>DESCRIPTION</span><br>
+                            <input type="text" id="desc-text" name="description" required placeholder="What do you need to do?">
+                        </div>
+                    </div>
 
-<link rel="stylesheet" type="text/javascript" href="js/home.js">
-    
+                        <div class="cat-date">
+                            <!-- the catgory section -->
+                                <div class="category">
+                                        <div class="cat">
+                                            <span>CATEGORY</span><br>
+                                                <select name="category" id="select-options">
+                                                    <option value="choose_category" class="opt">Choose a Category</option>
+                                                    <option value="public" class="opt">public</option>
+                                                    <option value="personal" class="opt">personal</option>
+                                                    <option value="work" class="opt">work</option>
+                                                    <option value="school" class="opt">school</option>
+                                                    <option value="cleaning" class="opt">cleaning</option>
+                                                    <option value="others" class="opt">Others</option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <div class="date">
+                                    <!-- the date section -->
+                                        <div class="date-desc">
+                                            <h1>DUE DATE</h1>
+                                            <input type="date" name="date" required> 
+                                        </div>
+                                </div>
+                        </div>
+                            <!-- the buttons to add the task -->
+                            <div class="buttons">
+                                <div class="add-button">
+                                    <button type="submit"> <i class="fas fa-plus"></i><span>ADD TASK</span></button>
+                                </div>
+        </form>
+                                <!-- the form actioon for getting the deleted task -->
+                            <form action="/delete-task" method="POST">
+                                <div class="delete-button">
+                                     <button><i class="fas fa-trash"></i><span>DELETE TASK</span></button>
+                                </div>
+                        </div>
+                        <% for(let i of ToDoItem_list) { %>
+                                <!-- new added tasks list -->
+                                    <div class="create-list">
+                                        <div class="checkbox">
+                                            <input name="<%= i._id %>" type="checkbox">
+                                        <div>
+                                        <div class="list-desc">
+                                            <h1><%= i.description%></h1>
+                                            <div class="date-list">
+                                                <i class="fas fa-calendar"></i>
+                                                <span><%= i.date%></span>
+                                            </div>
+                                        </div>
+                                        <div class="list-cat">
+                                            <div class="box">
+                                                <div class="box-text">
+                                                   <%= i.category%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                </form>
+                        </div>
+                    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 </body>
 </html>
